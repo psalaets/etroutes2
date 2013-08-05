@@ -1,6 +1,12 @@
 var extractor = require('../lib/extractor');
 var assert = require('assert');
 
+// TODO
+// boulder grade 1-2 digits
+// 5.Intro
+// rope grade 1-2 digits
+// rope grade 2 digits and letter
+
 describe('extractor function', function() {
   var item = {
     title: "Donkey Kong - 5.7 - Set by Joe Johnson (Dickey) at Earth Treks (Columbia)",
