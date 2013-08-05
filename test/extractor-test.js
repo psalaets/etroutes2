@@ -81,4 +81,20 @@ describe('extractor function', function() {
     assert.equal(route.url, 'https://secure.theSendSpot.com/vc/route?rid=5351');
     assert.equal(route.sendSpotId, '5351');
   });
+
+  var itemWithTrickyDashesInRouteName = {
+    title: "Donkey - Kong - 5.7 - Set by Joe Johnson (Dickey) at Earth Treks (Columbia)",
+    link: 'https://secure.theSendSpot.com/vc/route?rid=5351'
+  };
+
+  it('extracts route when route name has tricky dashes in it', function() {
+    var route = extractor(itemWithTrickyDashesInRouteName.title, itemWithTrickyDashesInRouteName.link);
+
+    assert.equal(route.name, 'Donkey - Kong');
+    assert.equal(route.grade, '5.7');
+    assert.equal(route.setter, 'Dickey');
+    assert.equal(route.location, 'Columbia');
+    assert.equal(route.url, 'https://secure.theSendSpot.com/vc/route?rid=5351');
+    assert.equal(route.sendSpotId, '5351');
+  });
 });
