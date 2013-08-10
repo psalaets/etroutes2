@@ -1,11 +1,6 @@
 var extractor = require('../lib/extractor');
 var assert = require('assert');
 
-// TODO
-// boulder grade 1-2 digits
-// 5.Intro
-// rope grade 1-2 digits
-// rope grade 2 digits and letter
 
 function defaultItemParts() {
   return {
@@ -66,6 +61,96 @@ describe('extractor function', function() {
 
     assert.equal(route.name, 'Donkey Kong');
     assert.equal(route.grade, 'V Intro');
+    assert.equal(route.setter, 'Dickey');
+    assert.equal(route.location, 'Columbia');
+    assert.equal(route.url, 'https://secure.theSendSpot.com/vc/route?rid=5351');
+    assert.equal(route.sendSpotId, '5351');
+  });
+
+  it('extracts route from item with 1 digit bouldering grade', function() {
+    var item = createItem({
+      grade: 'V4'
+    });
+
+    var route = extractor(item.title, item.link);
+
+    assert.equal(route.name, 'Donkey Kong');
+    assert.equal(route.grade, 'V4');
+    assert.equal(route.setter, 'Dickey');
+    assert.equal(route.location, 'Columbia');
+    assert.equal(route.url, 'https://secure.theSendSpot.com/vc/route?rid=5351');
+    assert.equal(route.sendSpotId, '5351');
+  });
+
+  it('extracts route from item with 2 digit bouldering grade', function() {
+    var item = createItem({
+      grade: 'V10'
+    });
+
+    var route = extractor(item.title, item.link);
+
+    assert.equal(route.name, 'Donkey Kong');
+    assert.equal(route.grade, 'V10');
+    assert.equal(route.setter, 'Dickey');
+    assert.equal(route.location, 'Columbia');
+    assert.equal(route.url, 'https://secure.theSendSpot.com/vc/route?rid=5351');
+    assert.equal(route.sendSpotId, '5351');
+  });
+
+  it('extracts route from item with 5.Intro grade', function() {
+    var item = createItem({
+      grade: '5.Intro'
+    });
+
+    var route = extractor(item.title, item.link);
+
+    assert.equal(route.name, 'Donkey Kong');
+    assert.equal(route.grade, '5.Intro');
+    assert.equal(route.setter, 'Dickey');
+    assert.equal(route.location, 'Columbia');
+    assert.equal(route.url, 'https://secure.theSendSpot.com/vc/route?rid=5351');
+    assert.equal(route.sendSpotId, '5351');
+  });
+
+  it('extracts route from item with 1 digit roped grade', function() {
+    var item = createItem({
+      grade: '5.9'
+    });
+
+    var route = extractor(item.title, item.link);
+
+    assert.equal(route.name, 'Donkey Kong');
+    assert.equal(route.grade, '5.9');
+    assert.equal(route.setter, 'Dickey');
+    assert.equal(route.location, 'Columbia');
+    assert.equal(route.url, 'https://secure.theSendSpot.com/vc/route?rid=5351');
+    assert.equal(route.sendSpotId, '5351');
+  });
+
+  it('extracts route from item with 2 digit roped grade', function() {
+    var item = createItem({
+      grade: '5.10'
+    });
+
+    var route = extractor(item.title, item.link);
+
+    assert.equal(route.name, 'Donkey Kong');
+    assert.equal(route.grade, '5.10');
+    assert.equal(route.setter, 'Dickey');
+    assert.equal(route.location, 'Columbia');
+    assert.equal(route.url, 'https://secure.theSendSpot.com/vc/route?rid=5351');
+    assert.equal(route.sendSpotId, '5351');
+  });
+
+  it('extracts route from item with 2 digit with letter roped grade', function() {
+    var item = createItem({
+      grade: '5.10d'
+    });
+
+    var route = extractor(item.title, item.link);
+
+    assert.equal(route.name, 'Donkey Kong');
+    assert.equal(route.grade, '5.10d');
     assert.equal(route.setter, 'Dickey');
     assert.equal(route.location, 'Columbia');
     assert.equal(route.url, 'https://secure.theSendSpot.com/vc/route?rid=5351');
