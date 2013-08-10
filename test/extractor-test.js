@@ -7,13 +7,46 @@ var assert = require('assert');
 // rope grade 1-2 digits
 // rope grade 2 digits and letter
 
-describe('extractor function', function() {
-  var item = {
-    title: "Donkey Kong - 5.7 - Set by Joe Johnson (Dickey) at Earth Treks (Columbia)",
+function defaultItemParts() {
+  return {
+    name: 'Donkey Kong',
+    grade: '5.7',
+    setterName: 'Joe Johnson',
+    setterNick: 'Dickey',
+    gym: 'Earth Treks',
+    location: 'Columbia',
     link: 'https://secure.theSendSpot.com/vc/route?rid=5351'
   };
+}
 
+function createItem(newParts) {
+  var parts = defaultItemParts();
+
+  newParts = newParts || {};
+  for (var part in newParts) {
+    parts[part] = newParts[part];
+  }
+
+  var setterNick = '';
+  if (parts.setterNick) {
+    setterNick = '(' + parts.setterNick + ')'
+  }
+
+  var location = '';
+  if (parts.location) {
+    location = '(' + parts.location + ')';
+  }
+
+  return {
+    title: parts.name + ' - ' + parts.grade + ' - Set by ' + parts.setterName + ' ' + setterNick + ' at ' + parts.gym + ' ' + location,
+    link: parts.link
+  }
+}
+
+describe('extractor function', function() {
   it('extracts route from regular item', function() {
+    var item = createItem();
+
     var route = extractor(item.title, item.link);
 
     assert.equal(route.name, 'Donkey Kong');
@@ -24,13 +57,12 @@ describe('extractor function', function() {
     assert.equal(route.sendSpotId, '5351');
   });
 
-  var itemWithSpaceInGrade = {
-    title: "Donkey Kong - V Intro - Set by Joe Johnson (Dickey) at Earth Treks (Columbia)",
-    link: 'https://secure.theSendSpot.com/vc/route?rid=5351'
-  };
-
   it('extracts route from item with space in grade', function() {
-    var route = extractor(itemWithSpaceInGrade.title, itemWithSpaceInGrade.link);
+    var item = createItem({
+      grade: 'V Intro'
+    });
+
+    var route = extractor(item.title, item.link);
 
     assert.equal(route.name, 'Donkey Kong');
     assert.equal(route.grade, 'V Intro');
@@ -40,13 +72,12 @@ describe('extractor function', function() {
     assert.equal(route.sendSpotId, '5351');
   });
 
-  var itemWithNoSetterNick = {
-    title: "Donkey Kong - 5.7 - Set by Joe Johnson  at Earth Treks (Columbia)",
-    link: 'https://secure.theSendSpot.com/vc/route?rid=5351'
-  };
-
   it('uses setter name when theres no setter nick', function() {
-    var route = extractor(itemWithNoSetterNick.title, itemWithNoSetterNick.link);
+    var item = createItem({
+      setterNick: ''
+    });
+
+    var route = extractor(item.title, item.link);
 
     assert.equal(route.name, 'Donkey Kong');
     assert.equal(route.grade, '5.7');
@@ -56,13 +87,12 @@ describe('extractor function', function() {
     assert.equal(route.sendSpotId, '5351');
   });
 
-  var itemWithNoGym = {
-    title: "Donkey Kong - 5.7 - Set by Joe Johnson (Dickey) at  (Columbia)",
-    link: 'https://secure.theSendSpot.com/vc/route?rid=5351'
-  };
-
   it('extracts route when item has no gym', function() {
-    var route = extractor(itemWithNoGym.title, itemWithNoGym.link);
+    var item = createItem({
+      gym: ''
+    });
+
+    var route = extractor(item.title, item.link);
 
     assert.equal(route.name, 'Donkey Kong');
     assert.equal(route.grade, '5.7');
@@ -72,13 +102,12 @@ describe('extractor function', function() {
     assert.equal(route.sendSpotId, '5351');
   });
 
-  var itemWithDashesInRouteName = {
-    title: "Donkey -vs- Kong - 5.7 - Set by Joe Johnson (Dickey) at Earth Treks (Columbia)",
-    link: 'https://secure.theSendSpot.com/vc/route?rid=5351'
-  };
-
   it('extracts route when route name has dashes in it', function() {
-    var route = extractor(itemWithDashesInRouteName.title, itemWithDashesInRouteName.link);
+    var item = createItem({
+      name: 'Donkey -vs- Kong'
+    });
+
+    var route = extractor(item.title, item.link);
 
     assert.equal(route.name, 'Donkey -vs- Kong');
     assert.equal(route.grade, '5.7');
@@ -88,13 +117,12 @@ describe('extractor function', function() {
     assert.equal(route.sendSpotId, '5351');
   });
 
-  var itemWithTrickyDashesInRouteName = {
-    title: "Donkey - Kong - 5.7 - Set by Joe Johnson (Dickey) at Earth Treks (Columbia)",
-    link: 'https://secure.theSendSpot.com/vc/route?rid=5351'
-  };
-
   it('extracts route when route name has tricky dashes in it', function() {
-    var route = extractor(itemWithTrickyDashesInRouteName.title, itemWithTrickyDashesInRouteName.link);
+    var item = createItem({
+      name: 'Donkey - Kong'
+    });
+
+    var route = extractor(item.title, item.link);
 
     assert.equal(route.name, 'Donkey - Kong');
     assert.equal(route.grade, '5.7');
