@@ -8,7 +8,9 @@
   },
   "dependencies": {
     "express": "3.3.4",
-    "jade": "*"
+    "jade": "*",
+    "request": "2.26.0",
+    "feedparser": "0.16.1"
   },
   "devDependencies": {
     "mocha": "~1.12.0"
