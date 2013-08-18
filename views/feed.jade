@@ -1,0 +1,12 @@
+doctype xml
+rss(version="2.0")
+  channel
+    title= 'ET Routes'
+    link
+    language= 'en-us'
+
+    each route in routes
+      item
+        title= route.name
+        link= route.url
+        description= tweet(route)

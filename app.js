@@ -3,11 +3,21 @@
  * Module dependencies.
  */
 
-var express = require('express')
-  , routes = require('./routes')
-  , user = require('./routes/user')
-  , http = require('http')
-  , path = require('path');
+var env = process.env.NODE_ENV || 'development';
+var config = require('./config')[env];
+
+var mongoose = require('mongoose');
+
+// Connect to db
+mongoose.connect(config.db);
+
+// Get models defined
+require('./lib/models/route');
+
+var express = require('express'),
+    route = require('./routes/route'),
+    http = require('http'),
+    path = require('path');
 
 var app = express();
 
@@ -27,8 +37,7 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get('/', routes.index);
-app.get('/users', user.list);
+app.get('/routes/latest', route.feed);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
