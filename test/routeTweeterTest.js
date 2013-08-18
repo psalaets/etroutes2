@@ -9,7 +9,7 @@ describe("routeTweeter", function() {
       setter: 'Bob',
       location: 'Rockville',
       url: 'http://something.com',
-      sendspotId: '5555'
+      sendspotId: 5555
     }
   };
 

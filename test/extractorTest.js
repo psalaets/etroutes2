@@ -49,7 +49,7 @@ describe('extractor function', function() {
     assert.equal(route.setter, 'Dickey');
     assert.equal(route.location, 'Columbia');
     assert.equal(route.url, 'https://secure.theSendSpot.com/vc/route?rid=5351');
-    assert.equal(route.sendspotId, '5351');
+    assert.equal(route.sendspotId, 5351);
   });
 
   it('extracts route from item with space in grade', function() {
@@ -64,7 +64,7 @@ describe('extractor function', function() {
     assert.equal(route.setter, 'Dickey');
     assert.equal(route.location, 'Columbia');
     assert.equal(route.url, 'https://secure.theSendSpot.com/vc/route?rid=5351');
-    assert.equal(route.sendspotId, '5351');
+    assert.equal(route.sendspotId, 5351);
   });
 
   it('extracts route from item with 1 digit bouldering grade', function() {
@@ -79,7 +79,7 @@ describe('extractor function', function() {
     assert.equal(route.setter, 'Dickey');
     assert.equal(route.location, 'Columbia');
     assert.equal(route.url, 'https://secure.theSendSpot.com/vc/route?rid=5351');
-    assert.equal(route.sendspotId, '5351');
+    assert.equal(route.sendspotId, 5351);
   });
 
   it('extracts route from item with 2 digit bouldering grade', function() {
@@ -94,7 +94,7 @@ describe('extractor function', function() {
     assert.equal(route.setter, 'Dickey');
     assert.equal(route.location, 'Columbia');
     assert.equal(route.url, 'https://secure.theSendSpot.com/vc/route?rid=5351');
-    assert.equal(route.sendspotId, '5351');
+    assert.equal(route.sendspotId, 5351);
   });
 
   it('extracts route from item with 5.Intro grade', function() {
@@ -109,7 +109,7 @@ describe('extractor function', function() {
     assert.equal(route.setter, 'Dickey');
     assert.equal(route.location, 'Columbia');
     assert.equal(route.url, 'https://secure.theSendSpot.com/vc/route?rid=5351');
-    assert.equal(route.sendspotId, '5351');
+    assert.equal(route.sendspotId, 5351);
   });
 
   it('extracts route from item with 1 digit roped grade', function() {
@@ -124,7 +124,7 @@ describe('extractor function', function() {
     assert.equal(route.setter, 'Dickey');
     assert.equal(route.location, 'Columbia');
     assert.equal(route.url, 'https://secure.theSendSpot.com/vc/route?rid=5351');
-    assert.equal(route.sendspotId, '5351');
+    assert.equal(route.sendspotId, 5351);
   });
 
   it('extracts route from item with 2 digit roped grade', function() {
@@ -139,7 +139,7 @@ describe('extractor function', function() {
     assert.equal(route.setter, 'Dickey');
     assert.equal(route.location, 'Columbia');
     assert.equal(route.url, 'https://secure.theSendSpot.com/vc/route?rid=5351');
-    assert.equal(route.sendspotId, '5351');
+    assert.equal(route.sendspotId, 5351);
   });
 
   it('extracts route from item with 2 digit with letter roped grade', function() {
@@ -154,7 +154,7 @@ describe('extractor function', function() {
     assert.equal(route.setter, 'Dickey');
     assert.equal(route.location, 'Columbia');
     assert.equal(route.url, 'https://secure.theSendSpot.com/vc/route?rid=5351');
-    assert.equal(route.sendspotId, '5351');
+    assert.equal(route.sendspotId, 5351);
   });
 
   it('uses setter name when theres no setter nick', function() {
@@ -169,7 +169,7 @@ describe('extractor function', function() {
     assert.equal(route.setter, 'Joe Johnson');
     assert.equal(route.location, 'Columbia');
     assert.equal(route.url, 'https://secure.theSendSpot.com/vc/route?rid=5351');
-    assert.equal(route.sendspotId, '5351');
+    assert.equal(route.sendspotId, 5351);
   });
 
   it('extracts route when item has no gym', function() {
@@ -184,7 +184,7 @@ describe('extractor function', function() {
     assert.equal(route.setter, 'Dickey');
     assert.equal(route.location, 'Columbia');
     assert.equal(route.url, 'https://secure.theSendSpot.com/vc/route?rid=5351');
-    assert.equal(route.sendspotId, '5351');
+    assert.equal(route.sendspotId, 5351);
   });
 
   it('extracts route when route name has dashes in it', function() {
@@ -199,7 +199,7 @@ describe('extractor function', function() {
     assert.equal(route.setter, 'Dickey');
     assert.equal(route.location, 'Columbia');
     assert.equal(route.url, 'https://secure.theSendSpot.com/vc/route?rid=5351');
-    assert.equal(route.sendspotId, '5351');
+    assert.equal(route.sendspotId, 5351);
   });
 
   it('extracts route when route name has tricky dashes in it', function() {
@@ -214,6 +214,6 @@ describe('extractor function', function() {
     assert.equal(route.setter, 'Dickey');
     assert.equal(route.location, 'Columbia');
     assert.equal(route.url, 'https://secure.theSendSpot.com/vc/route?rid=5351');
-    assert.equal(route.sendspotId, '5351');
+    assert.equal(route.sendspotId, 5351);
   });
 });
