@@ -13,21 +13,21 @@ exports.feed = function(req, res) {
         setter: 'Bob',
         location: 'Rockville',
         url: 'http://something.com',
-        sendspotId: '5555'
+        sendspotId: 5555
       }, {
         name: 'The Fall',
         grade: '5.12a',
         setter: 'Bob',
         location: 'Rockville',
         url: 'http://something.com',
-        sendspotId: '5550'
+        sendspotId: 5550
       }, {
         name: 'The Jump',
         grade: '5.11a',
         setter: 'Bob',
         location: 'Rockville',
         url: 'http://something.com',
-        sendspotId: '5552'
+        sendspotId: 5552
       }]
     });
   });
